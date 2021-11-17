@@ -62,9 +62,9 @@ begin
 end$$
 
 /*Realizar la SF complejidadPromedio que reciba como parámetro un idProyecto y devuelva un float representando el promedio de  complejidad de los
- requerimientos para el Proyecto pasado por parámetro.*/
- DELIMITER $$
- CREATE FUNCTION complejidadPromedio (unidProyecto SMALLINT
+requerimientos para el Proyecto pasado por parámetro.*/
+DELIMITER $$
+CREATE FUNCTION complejidadPromedio (unidProyecto SMALLINT
 										) RETURNS FLOAT
 begin
 		DECLARE Resultado FLOAT;
