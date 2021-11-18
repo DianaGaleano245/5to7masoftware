@@ -17,9 +17,12 @@ Insertar Requerimientos.
 Insertar Tareas y modificar solo su fin.*/
     DROP USER IF EXISTS 'PM'@'10.3.45.%';
     CREATE USER 'PM'@'10.3.45.%' IDENTIFIED BY 'passPM';
-    GRANT ALL ON SoftwareFactory.Empleado TO 'PM'@'10.3.45.%';
-    GRANT SELECT, INSERT ON 
-    
+    GRANT INSERT , SELECT ON SoftwareFactory.Empleado TO 'PM'@'10.3.45.%';
+    GRANT SELECT, UPDATE (Calificacion) ON SoftwareFactory.Experiencia
+    GRANT INSERT ON SoftWareFactory.Requerimiento TO 'PM'@'10.3.45.%';
+    GRANT SELECT, UPDATE (fin) ON SoftwareFactory.Tarea
+
 /*Empleado:  desde la red 10.3.45.xxx puede ver todas las tablas.*/
-    DROP USER IF EXISTS 'Empleado'@'10.3.45';
+    DROP USER IF EXISTS 'Empleado'@'10.3.45.%';
     CREATE USER 'Empleado'@'10.3.45.%' IDENTIFIED BY 'passEmpleado';
+    GRANT SELECT ON SoftWareFactory.* TO 'Empleado'@'10.3.45.%';
