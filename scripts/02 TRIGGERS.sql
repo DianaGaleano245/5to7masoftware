@@ -5,6 +5,7 @@ INSERT INTO Tarea (IdRequerimiento , Cuil , Inicio , Fin)
 					VALUES(unIdRequerimiento , unCuil , unInicio , unFin);
 
 
+
 /*Realizar un trigger para que al ingresar un usuario, le asigne por defecto experiencia en todas las 
 tecnologías disponibles con calificación igual a CERO.*/
 DELIMITER $$
@@ -13,15 +14,5 @@ INSERT INTO Software.Experiencia (Cuil , Tecnologia, calificación)
         	SELECT   NEW.Cuil , NEW.Tecnologia , 0
 			FROM		 Tecnologia;
 end $$
-
-begin 
-		if(new. Tecnologia = 0) THEN
-        SIGNAL SQLSTATE '45000'
-		SET MESSAGE_TEXT = 'tecnologia con calificacion igual a cero';
-        end if;
-end $$
-
-
-
 
 
