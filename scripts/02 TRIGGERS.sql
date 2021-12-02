@@ -1,19 +1,16 @@
 /*Interacción DOS*/
 /*Antes de hacer un insert en tarea, si la calificación del empleado es menor a la complejidad del 
 requerimiento no se tiene que permitir el Insert y se tiene que mostrar la leyenda “Calificación insuficiente”.*/
-DELIMITER $$ 
-INSERT INTO Tarea (IdRequerimiento , Cuil , Inicio , Fin)
-					VALUES(unIdRequerimiento , unCuil , unInicio , unFin);
-end $$
-
-INSERT INTO Empleado (Cuil, Nombre, Apellido, Contratacion)
-					VALUES(unCuil, unNombre, unApellido, UnaContratacion)
-end $$
+DELIMITER $$
 CREATE TRIGGER beforeCuil BEFORE INSERT ON Tarea 
 FOR EACH ROW
 BEGIN
 -- GUARDARSE calificacion del Empleado
 -- Guardarse requerimiento de la tarea
+	DECLARE calificacion TINYINT UNSIGNED;
+	DECLARE complejidad TINYINT UNSIGNED;
+
+	-- consulta entre experiencia y requerimiento usando en where los campos del trigger
 
 
 IF ( NEW.calificacion < 0) THEN
