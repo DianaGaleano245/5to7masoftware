@@ -7,17 +7,23 @@ FOR EACH ROW
 BEGIN
 -- GUARDARSE calificacion del Empleado
 -- Guardarse requerimiento de la tarea
-	DECLARE calificacion TINYINT UNSIGNED;
-	DECLARE complejidad TINYINT UNSIGNED;
+	DECLARE unacalificacion TINYINT UNSIGNED;
+	DECLARE unacomplejidad TINYINT UNSIGNED;
 
-	-- consulta entre experiencia y requerimiento usando en where los campos del trigger
-
-
-IF ( NEW.calificacion < 0) THEN
+	SELECT Calificacion, complejidad INTO unacalificacion,unacomplejidad
+	FROM Experiencia
+	JOIN Requerimiento USING (idTecnologia)
+	WHERE NEW.IdRequerimiento = idRequerimiento
+	
+	if (calificacion < complejidad)then
+	IF ( NEW.calificacion < 0) THEN
         SIGNAL SQLSTATE '45000'
 		SET MESSAGE_TEXT = 'calificacion insuficiente';
-    END IF;<
+    END IF;
 END
+	)
+	-- consulta entre experiencia y requerimiento usando en where los campos del trigger
+
 
 
 /*Realizar un trigger para que al ingresar un usuario, le asigne por defecto experiencia en todas las 
@@ -29,4 +35,7 @@ INSERT INTO Software.Experiencia (Cuil , IdTecnologia, calificación)
 			FROM		 Tecnologia;
 end $$
 
-
+INSERT INTO SoftWare.Experiencia (Cuil , idTecnologia , Calificacion )
+SELECT 
+FROM  empleado
+where
